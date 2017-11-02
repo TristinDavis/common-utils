@@ -12,16 +12,17 @@ public class HttpResponse {
 		this.data = data;
 	}
 
-
 	@Override
 	public String toString() {
+		if(data==null) {
+			return "result is Null!";
+		}
+
 		return new String(data);
 	}
-
 
 	public byte[] getData() {
 		return data;
 	}
-
 
 }

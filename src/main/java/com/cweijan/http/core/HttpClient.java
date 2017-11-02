@@ -20,10 +20,11 @@ public class HttpClient {
 		byte[] data = null;
 		try {
 			URL url = new URL(request.getUrl());
-			HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+			
+			HttpURLConnection connection = request.open(url);;
 			request.buildHeader(connection);
 			request.buildParam(connection);
-			connection.connect();
+			request.buildTimeout(connection);
 			data = readResult(connection);
 		} catch (Exception e) {
 			Log.getLogger().error(e.getMessage(),e);
@@ -39,7 +40,7 @@ public class HttpClient {
 	private static byte[] readResult(HttpURLConnection connection) throws IOException {
 		InputStream inputStream = connection.getInputStream();
 		byte[] data = null;
-		byte[] temp = new byte[1024];
+		byte[] temp = new byte[102400];
 		int len = 0;
 		while ((len = inputStream.read(temp)) != -1) {
 			if (data == null) {
