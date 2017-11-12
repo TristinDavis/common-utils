@@ -2,6 +2,7 @@ package com.cweijan.http.request;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
+import java.net.SocketTimeoutException;
 import java.net.URL;
 
 public interface HttpRequest {
@@ -18,7 +19,7 @@ public interface HttpRequest {
 
 	public void buildHeader(HttpURLConnection connection);
 
-	public void buildTimeout(HttpURLConnection connection);
+	public void buildTimeout(HttpURLConnection connection) throws SocketTimeoutException;
 	public HttpURLConnection open(URL url) throws IOException;
 
 	public void setTimeout(int timeout);

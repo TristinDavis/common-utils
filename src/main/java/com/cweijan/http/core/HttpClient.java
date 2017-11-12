@@ -11,24 +11,20 @@ import org.apache.commons.lang3.ArrayUtils;
 import com.cweijan.http.request.HttpGet;
 import com.cweijan.http.request.HttpRequest;
 import com.cweijan.http.response.HttpResponse;
-import com.cweijan.util.Log;
 
 public class HttpClient {
 
-	public static HttpResponse request(HttpRequest request) {
+	public static HttpResponse request(HttpRequest request) throws IOException {
 
 		byte[] data = null;
-		try {
-			URL url = new URL(request.getUrl());
-			
-			HttpURLConnection connection = request.open(url);;
-			request.buildHeader(connection);
-			request.buildParam(connection);
-			request.buildTimeout(connection);
-			data = readResult(connection);
-		} catch (Exception e) {
-			Log.getLogger().error(e.getMessage(),e);
-		}
+		URL url = new URL(request.getUrl());
+
+		HttpURLConnection connection = request.open(url);
+		;
+		request.buildHeader(connection);
+		request.buildParam(connection);
+		request.buildTimeout(connection);
+		data = readResult(connection);
 
 		return new HttpResponse(data);
 	}
@@ -36,7 +32,7 @@ public class HttpClient {
 	public static HttpResponse get(String host) throws IOException {
 		return request(new HttpGet(host));
 	}
-	
+
 	private static byte[] readResult(HttpURLConnection connection) throws IOException {
 		InputStream inputStream = connection.getInputStream();
 		byte[] data = null;
