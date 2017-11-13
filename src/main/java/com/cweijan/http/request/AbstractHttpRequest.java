@@ -1,6 +1,7 @@
 package com.cweijan.http.request;
 
 import java.io.IOException;
+
 import java.net.HttpURLConnection;
 import java.net.InetSocketAddress;
 import java.net.Proxy;
@@ -9,11 +10,12 @@ import java.net.URLConnection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Set;
 
 import com.cweijan.http.DefaultConfig;
 
-import java.util.Set;
 
+@SuppressWarnings("unused")
 public abstract class AbstractHttpRequest implements HttpRequest {
 
 	private String param = "";
