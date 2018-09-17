@@ -1,10 +1,14 @@
 package com.cweijan.util;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 public class DateUtils {
 
+	private static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+	
 	/**
 	 * 获取n天之前的日期
 	 * 
@@ -38,6 +42,13 @@ public class DateUtils {
 		return getIntervalDay(0, formatter);
 	}
 
+	public static String formatDate(Date date) {
+		if (date == null){
+			return "";
+		}
+		return dateFormat.format(date);
+	}
+	
 	/**
 	 * 
 	 * @return 返回时间戳 格式:yyyyMMddHHmmss
